@@ -29,9 +29,9 @@ var Foo = Class({
         self.a = b;
     },
 
-    metodo1: function(self) {
+    metodo1: function(self, c) {
         self.a = 3
-        return(self.a + 4);
+        return(self.a + c);
     }
 });
 
