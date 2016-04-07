@@ -1,3 +1,5 @@
+(function() {
+'use strict';
 describe("Uma interface", function() {
 
     it("deve ser declarada sem erros", function() {
@@ -52,3 +54,4 @@ describe("Uma interface", function() {
         expect(function() {cobaia.c();}).toThrowError('pyoo.js: Método não implementado.');
     });
 });
+})();
