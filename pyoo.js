@@ -38,6 +38,15 @@ function Classe(corpo) {
         throw new Error('pyoo.js: Esperado object, obteve Array.');
     }
 
+    // Verifica se algum método declarado não possui o argumento self
+    _(corpo).each(function(valor) {
+        if ((typeof valor) === "function") {
+            if (valor.length < 1) {
+                throw new Error('pyoo.js: Um método deve aceitar, no mínimo, o argumento self.');
+            }
+        }
+    });
+
     // Retorna uma função equivalente a um construtor.
     return (function() {
         var self = {};
@@ -47,7 +56,9 @@ function Classe(corpo) {
         // Os métodos resultantes são closures que invocam os métodos originais
         // com self.
         _(corpo).each(function(valor, atributo) {
+
             if ((typeof valor) === "function") {
+
                 __metodos['__' + atributo] = valor;
                 self[atributo] = function() {
                     return __metodos['__' + atributo].

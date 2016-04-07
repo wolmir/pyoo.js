@@ -70,7 +70,7 @@ describe('Uma classe', function() {
     it('deve possiblitar sua declaração sem uma função __init__', function() {
         expect(function() {
             Classe({
-                metodo: function() {}
+                metodo: function(self) {}
             });
         }).not.toThrow();
     });
@@ -80,9 +80,19 @@ describe('Uma classe', function() {
     it('deve possiblitar sua instanciação sem uma função __init__', function() {
         expect(function() {
             Classe({
-                metodo: function() {}
+                metodo: function(self) {}
             })();
         }).not.toThrow();
+    });
+
+
+
+    it('não deve permitir, em sua declaração, métodos com menos de um argumento', function() {
+        expect(function() {
+            Classe({
+                metodoParaDarErro: function() {}
+            });
+        }).toThrowError('pyoo.js: Um método deve aceitar, no mínimo, o argumento self.');
     });
 });
 
