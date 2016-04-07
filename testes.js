@@ -1,12 +1,12 @@
 describe("Uma interface", function() {
 
-    it("deve ser declarada sem erros,", function() {
+    it("deve ser declarada sem erros", function() {
         expect(function() {
             return Interface(['a', 'b', 'c']);
         }).not.toThrow();
     });
 
-    it("e não pode ser declarada sem argumentos", function() {
+    it("não pode ser declarada sem argumentos", function() {
 
         var msg_erro = 'pyoo.js: Erro na declaração de interface.' +
             ' Esperado um Array, obteve undefined.';
@@ -16,7 +16,7 @@ describe("Uma interface", function() {
         }).toThrowError(msg_erro);
     });
 
-    it("ou cujo argumento não seja um Array,", function() {
+    it("não pode ser declarada com um argumento que não seja um Array", function() {
 
         var msg_erro = 'pyoo.js: Erro na declaração de interface.' +
             ' Esperado um Array, obteve string.';
@@ -26,7 +26,7 @@ describe("Uma interface", function() {
         }).toThrowError(msg_erro);
     });
 
-    it("e deve retornar um objeto", function() {
+    it("deve retornar um objeto", function() {
         var cobaia = Interface(['a']);
 
         expect(cobaia).toBeDefined();
@@ -34,10 +34,21 @@ describe("Uma interface", function() {
         expect(typeof cobaia).toBe('object');
     });
 
-    it("com métodos cujos nomes estavam no Array", function() {
+    it("deve retornar um objeto com métodos cujos nomes estavam no Array", function() {
 
-        var cobaia_com_um_metodo = Interface(['a']);
-        expect(cobaia_com_um_metodo.a).toBeDefined();
+        var cobaia = Interface(['a', 'b', 'c']);
+        expect(cobaia.a).toBeDefined();
+        expect(cobaia.b).toBeDefined();
+        expect(cobaia.c).toBeDefined();
+        expect(cobaia.d).not.toBeDefined();
 
+    });
+
+    it("deve retornar um objeto com métodos que não podem ser invocados diretamente", function() {
+        var cobaia = Interface(['a', 'b', 'c']);
+
+        expect(function() {cobaia.a();}).toThrowError('pyoo.js: Método não implementado.');
+        expect(function() {cobaia.b();}).toThrowError('pyoo.js: Método não implementado.');
+        expect(function() {cobaia.c();}).toThrowError('pyoo.js: Método não implementado.');
     });
 });

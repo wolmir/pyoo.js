@@ -1,5 +1,5 @@
 function Interface(metodos) {
-    if (arguments.length == 0) {
+    if (arguments.length === 0) {
         throw new Error('pyoo.js: Erro na declaração de interface. Esperado um Array, obteve undefined.');
     }
 
@@ -10,6 +10,12 @@ function Interface(metodos) {
     }
 
     var _interface = {};
-    
-    return {};
+
+    _(metodos).each(function(nome) {
+        _interface[nome] = function() {
+            throw new Error('pyoo.js: Método não implementado.');
+        };
+    });
+
+    return _interface;
 }
