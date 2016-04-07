@@ -1,4 +1,5 @@
 function Interface(metodos) {
+    'use strict';
     if (arguments.length === 0) {
         throw new Error('pyoo.js: Erro na declaração de interface. Esperado um Array, obteve undefined.');
     }
