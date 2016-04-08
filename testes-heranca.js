@@ -70,29 +70,29 @@ describe('Uma subclasse', function() {
 
 
     it('deve herdar as propriedades da classe mãe', function() {
-        pending('Se o spec anterior não funcionar, este não vai funcionar também.');
         var CSuper = Classe({
+            a: 2,
             __init__: function(self) {
-                self.a = 2;
+
             },
 
-            metodo: function(self) {
-                return self.a;
+            metodo1: function(self) {
+                return self.a + 3;
             }
         });
 
         var CSub = Classe(CSuper, {
             __init__: function(self) {
-                invocaSuper();
                 self.b = 4;
             },
 
-            metodo: function(self) {
+            metodo2: function(self) {
                 return self.b + self.a;
             }
         });
 
-        expect();
+        expect(CSub().a).toBeDefined();
+        expect(CSub().a).toBe(2);
 
     });
 
