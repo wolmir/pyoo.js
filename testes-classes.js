@@ -143,6 +143,27 @@ describe('Uma instância de classe', function() {
 
 
 
+    it('deve aceitar argumentos em __init__', function() {
+
+        var CCobaia = Classe({
+            __init__: function(self, a, b) {
+                self.c = a + b;
+            }
+        });
+
+        expect(function() {
+            CCobaia();
+        }).not.toThrow();
+
+        expect(CCobaia(4, 9)).toBeDefined();
+        expect(CCobaia(4, 9)).not.toBe(null);
+
+        expect(CCobaia(4, 9).c).toBeDefined();
+        expect(CCobaia(4, 9).c).toBe(13);
+    });
+
+
+
 
 
     describe('declarada sem uma função __init__', function() {

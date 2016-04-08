@@ -89,8 +89,9 @@ function Classe() {
             }
         });
 
-        if (corpo.__init__)
-            corpo.__init__(self);
+        if (corpo.__init__) {
+            corpo.__init__.apply(self, [self].concat(Array.prototype.slice.call(arguments)));
+        }
 
         return self;
     });
