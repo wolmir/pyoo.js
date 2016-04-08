@@ -155,6 +155,8 @@ describe('Uma instância de classe', function() {
             }
         });
 
+
+
         it('deve existir', function() {
             expect(CCobaiaSemInit()).toBeDefined();
             expect(CCobaiaSemInit()).not.toBe(null);

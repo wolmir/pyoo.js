@@ -23,8 +23,18 @@ function Interface(metodos) {
 
 
 
-function Classe(corpo) {
+function Classe() {
     'use strict';
+
+    if (arguments.length === 0) {
+        throw new Error('pyoo.js: Esperado object, obteve undefined.');
+    }
+
+    var corpo = arguments[0];
+
+    if (arguments.length > 1) {
+        corpo = arguments[arguments.length - 1];
+    }
 
     if (!corpo) {
         throw new Error('pyoo.js: Esperado object, obteve undefined.');
@@ -38,6 +48,14 @@ function Classe(corpo) {
         throw new Error('pyoo.js: Esperado object, obteve Array.');
     }
 
+    var argumentos = Array.prototype.slice.call(arguments);
+
+    _(argumentos).initial().each(function(valor) {
+        if (!valor.__superclasses) {
+            throw new Error('pyoo.js: Esperado Classe, obteve ' + (typeof valor));
+        }
+    });
+
     // Verifica se algum método declarado não possui o argumento self
     _(corpo).each(function(valor) {
         if ((typeof valor) === "function") {
@@ -48,7 +66,7 @@ function Classe(corpo) {
     });
 
     // Retorna uma função equivalente a um construtor.
-    return (function() {
+    var classe = (function() {
         var self = {};
         var __metodos = {};
 
@@ -76,4 +94,8 @@ function Classe(corpo) {
 
         return self;
     });
+
+    classe.__superclasses = [Classe];
+
+    return classe;
 }
