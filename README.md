@@ -3,8 +3,6 @@
 Uma biblioteca *JavaScript* que oferece orientação a objetos
 no estilo *Python*.
 
-A versão atual contém uma implementação de classe simples, sem herança, e
-de interfaces, embora estas últimas não existam no Python.
 
 ## Exemplo
 
@@ -27,7 +25,7 @@ print j.metodo1(4)
 ### JavaScript
 
 ```javascript
-var Foo = Class({
+var Foo = Classe({
     __init__: function(self, b) {
         self.a = b;
     },
@@ -46,11 +44,13 @@ console.log(j.metodo1(4));
 
 ## Documentação
 
-### Interfaces
+### Setup
 
-```javascript
-//Declara uma interface com dois métodos
-var IExemplo = Interface(['metodo1', 'metodo2']);
+A pyoo.js depende da lodash. Portanto ela deve ser inclusa primeiro.
+
+```html
+<script type="text/javascript" src="lodash.js"></script>
+<script type="text/javascript" src="pyoo.js"></script>
 ```
 
 ### Classes
@@ -70,3 +70,40 @@ var CExemplo = Classe({
 var objExemplo = CExemplo();
 console.log(objExemplo.metodoExemplo());
 ```
+
+### Herança
+
+As classes suportam múltipla herança e múltiplos níveis de herança.
+
+```javascript
+var Animal = Classe({
+    __init__: function(self, nome) {
+        self.nome = nome;
+    },
+
+    falar: function(self) {
+        return 'Olá, meu nome é ' + self.nome + '!';
+    }
+});
+
+
+var Reptil = Classe(Animal, {
+    __init__: function(self, nome) {
+        Animal.__init__(self, nome);
+    },
+
+    falar: function(self) {
+        var fala_animal = Animal.falar(self);
+        return fala_animal + ' Eu sou um réptil!'
+    }
+});
+```
+
+
+
+## Funcionalidades Futuras
+
+* Variáveis privadas
+* isinstance()
+* issubclass()
+* Decoradores

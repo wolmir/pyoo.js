@@ -1,28 +1,3 @@
-function Interface(metodos) {
-    'use strict';
-    if (arguments.length === 0) {
-        throw new Error('pyoo.js: Erro na declaração de interface. Esperado um Array, obteve undefined.');
-    }
-
-    if (!Array.isArray(metodos)) {
-        var msg_erro = 'pyoo.js: Erro na declaração de interface. Esperado um Array, obteve ' +
-            (typeof metodos) + '.';
-        throw new Error(msg_erro);
-    }
-
-    var _interface = {};
-
-    _(metodos).each(function(nome) {
-        _interface[nome] = function() {
-            throw new Error('pyoo.js: Método não implementado.');
-        };
-    });
-
-    return _interface;
-}
-
-
-
 function Classe() {
     'use strict';
 
@@ -65,21 +40,26 @@ function Classe() {
         }
     });
 
-    // Retorna uma função equivalente a um construtor.
-    var classe = (function() {
+    var __estatico = {};
+    var __superclasses = _(argumentos).initial();
+
+    _(__superclasses).each(function(superclasse) {
+        _(superclasse).omit(['__superclasses']).each(function(valor, atributo) {
+            __estatico[atributo] = valor;
+        });
+    });
+
+    _(corpo).each(function(valor, atributo) {
+        __estatico[atributo] = valor;
+    });
+
+    var __classe = (function() {
         var self = {};
-        var __metodos = {};
 
-        // copia os atributos definidos no corpo da classe para self.
-        // Os métodos resultantes são closures que invocam os métodos originais
-        // com self.
-        _(corpo).each(function(valor, atributo) {
-
+        _(__estatico).each(function(valor, atributo) {
             if ((typeof valor) === "function") {
-
-                __metodos['__' + atributo] = valor;
                 self[atributo] = function() {
-                    return __metodos['__' + atributo].
+                    return __estatico[atributo].
                         apply(self, [self].concat(Array.prototype.slice.call(arguments)));
                 };
             }
@@ -89,14 +69,16 @@ function Classe() {
             }
         });
 
-        if (corpo.__init__) {
-            corpo.__init__.apply(self, [self].concat(Array.prototype.slice.call(arguments)));
+        if (__estatico.__init__) {
+            __estatico.__init__.apply(self, [self].concat(Array.prototype.slice.call(arguments)));
         }
-
         return self;
     });
 
-    classe.__superclasses = [Classe];
+    __classe.__superclasses = __superclasses;
+    _(__estatico).each(function(valor, atributo) {
+        __classe[atributo] = valor;
+    });
 
-    return classe;
+    return __classe;
 }
