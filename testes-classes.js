@@ -45,6 +45,10 @@ describe('Uma classe', function() {
         expect(function() {
             Classe([1,2]);
         }).toThrowError('pyoo.js: Esperado object, obteve Array.');
+
+        expect(function() {
+            Classe(null);
+        }).toThrowError('pyoo.js: Esperado object, obteve null.');
     });
 
 
