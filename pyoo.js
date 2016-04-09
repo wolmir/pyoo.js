@@ -14,7 +14,7 @@ function Classe() {
     if (corpo === null) {
         throw new Error('pyoo.js: Esperado object, obteve null.');
     }
-    
+
     if (!corpo) {
         throw new Error('pyoo.js: Esperado object, obteve undefined.');
     }
@@ -30,6 +30,10 @@ function Classe() {
     var argumentos = Array.prototype.slice.call(arguments);
 
     _(argumentos).initial().each(function(valor) {
+        if ((!valor) || (valor === null)) {
+            throw new Error('pyoo.js: Superclasse inválida, obteve ' + valor);
+        }
+        
         if (!valor.__superclasses) {
             throw new Error('pyoo.js: Esperado Classe, obteve ' + (typeof valor));
         }

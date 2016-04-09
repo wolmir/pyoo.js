@@ -38,6 +38,18 @@ describe('Uma subclasse', function() {
 
 
 
+    it('não poder ser declarada com superclasses inexistentes', function() {
+        expect(function() {
+            var CCobaia = Classe(undefined, {});
+        }).toThrowError('pyoo.js: Superclasse inválida, obteve undefined');
+
+        expect(function() {
+            var CCobaia = Classe(null, {});
+        }).toThrowError('pyoo.js: Superclasse inválida, obteve null');
+    });
+
+
+
     it('deve ser instanciada sem erros', function() {
         var CSuper = Classe({
             __init__: function(self) {
@@ -217,6 +229,21 @@ describe('Uma subclasse', function() {
         }).not.toThrow();
 
         expect(CSub(2).a).toBe(2);
+    });
+
+
+
+    it('deve evitar dependências cíclicas', function() {
+        expect(function() {
+
+            var CSuper = Classe(CSub, {
+                a: 2
+            });
+
+            var CSub = Classe(CSuper, {
+                a: 3
+            });
+        }).toThrowError('pyoo.js: Superclasse inválida, obteve undefined');
     });
 
 

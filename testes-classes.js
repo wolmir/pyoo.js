@@ -34,7 +34,7 @@ describe('Uma classe', function() {
 
 
     it('não pode ser declarada com um argumento que não seja object', function() {
-        var args = ['teste', 1, function() {}];
+        var args = ['teste', 1, function() {}, -1, 4.678];
 
         _(args).each(function(arg) {
             expect(function() {
