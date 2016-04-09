@@ -11,6 +11,10 @@ function Classe() {
         corpo = arguments[arguments.length - 1];
     }
 
+    if (corpo === null) {
+        throw new Error('pyoo.js: Esperado object, obteve null.');
+    }
+    
     if (!corpo) {
         throw new Error('pyoo.js: Esperado object, obteve undefined.');
     }
