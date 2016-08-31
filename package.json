@@ -2,7 +2,7 @@
   "name": "pyoo.js",
   "version": "1.1.0",
   "description": "A library for Python-style OO in JavaScript",
-  "main": "pyoo.js",
+  "main": "src/pyoo.js",
   "scripts": {
     "test": "jasmine"
   },
@@ -21,5 +21,9 @@
   "bugs": {
     "url": "https://github.com/wolmir/pyoo.js/issues"
   },
-  "homepage": "https://github.com/wolmir/pyoo.js#readme"
+  "homepage": "https://github.com/wolmir/pyoo.js#readme",
+  "dependencies": {
+    "jasmine": "^2.5.0",
+    "lodash": "^4.15.0"
+  }
 }

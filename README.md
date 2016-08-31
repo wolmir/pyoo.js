@@ -3,6 +3,20 @@
 Uma biblioteca *JavaScript* que oferece orientação a objetos
 no estilo *Python*.
 
+## Instalação
+
+### Node
+
+> npm install pyoo.js
+
+A **pyoo** é isomórfica.
+
+Para usar ela no browser sem **Webpack**:
+
+```html
+<script src="node_modules/pyoo.js/pyoo.js"></script>
+```
+
 
 ## Exemplo
 

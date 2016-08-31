@@ -2,7 +2,8 @@
 'use strict';
 
 
-
+var Classe = require('../src/pyoo.js');
+var _ = require('lodash');
 
 
 describe('Uma classe', function() {
