@@ -3,9 +3,11 @@
 Uma biblioteca *JavaScript* que oferece orientação a objetos
 no estilo *Python*.
 
-## Instalação
+## Documentação
 
-### Node
+### Instalação
+
+#### Node
 
 > npm install pyoo.js
 
@@ -15,56 +17,6 @@ Para usar ela no browser sem **Webpack**:
 
 ```html
 <script src="node_modules/pyoo.js/pyoo.js"></script>
-```
-
-
-## Exemplo
-
-### Python
-
-```python
-class Foo:
-    def __init__(self, b):
-        self.a = b
-
-    def metodo1(self, c):
-        return self.a + c
-
-j = Foo(6)
-
-# Escreve 10
-print j.metodo1(4)
-```
-
-### JavaScript
-
-```javascript
-var Foo = Classe({
-    __init__: function(self, b) {
-        self.a = b;
-    },
-
-    metodo1: function(self, c) {
-        self.a = 3
-        return(self.a + c);
-    }
-});
-
-var j = Foo(6)
-
-// Escreve 10
-console.log(j.metodo1(4));
-```
-
-## Documentação
-
-### Setup
-
-A pyoo.js depende da lodash. Portanto ela deve ser inclusa primeiro.
-
-```html
-<script type="text/javascript" src="lodash.js"></script>
-<script type="text/javascript" src="pyoo.js"></script>
 ```
 
 ### Classes
@@ -114,6 +66,43 @@ var Reptil = Classe(Animal, {
 ```
 
 
+## Exemplo
+
+### Python
+
+```python
+class Foo:
+    def __init__(self, b):
+        self.a = b
+
+    def metodo1(self, c):
+        return self.a + c
+
+j = Foo(6)
+
+# Escreve 10
+print j.metodo1(4)
+```
+
+### JavaScript
+
+```javascript
+var Foo = Classe({
+    __init__: function(self, b) {
+        self.a = b;
+    },
+
+    metodo1: function(self, c) {
+        self.a = 3
+        return(self.a + c);
+    }
+});
+
+var j = Foo(6)
+
+// Escreve 10
+console.log(j.metodo1(4));
+```
 
 ## Funcionalidades Futuras
 
