@@ -47,13 +47,14 @@ function Classe() {
     });
 
     // Verifica se algum método declarado não possui o argumento self
-    _(corpo).each(function(valor) {
-        if ((typeof valor) === "function") {
-            if (valor.length < 1) {
-                throw new Error('pyoo.js: Um método deve aceitar, no mínimo, o argumento self.');
-            }
-        }
-    });
+    // Desnecessário, por ser opcional
+    // _(corpo).each(function(valor) {
+    //     if ((typeof valor) === "function") {
+    //         if (valor.length < 1) {
+    //             throw new Error('pyoo.js: Um método deve aceitar, no mínimo, o argumento self.');
+    //         }
+    //     }
+    // });
 
     // Armazena as propriedades estáticas
     var __estatico = {};

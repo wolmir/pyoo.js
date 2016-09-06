@@ -91,14 +91,14 @@ describe('Uma classe', function() {
     });
 
 
-
-    it('não deve permitir, em sua declaração, métodos com menos de um argumento', function() {
-        expect(function() {
-            Classe({
-                metodoParaDarErro: function() {}
-            });
-        }).toThrowError('pyoo.js: Um método deve aceitar, no mínimo, o argumento self.');
-    });
+    // Essa restrição foi removida a fim de permitir métodos estáticos.
+    // it('não deve permitir, em sua declaração, métodos com menos de um argumento', function() {
+    //     expect(function() {
+    //         Classe({
+    //             metodoParaDarErro: function() {}
+    //         });
+    //     }).toThrowError('pyoo.js: Um método deve aceitar, no mínimo, o argumento self.');
+    // });
 });
 
 
