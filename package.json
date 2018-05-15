@@ -1,6 +1,6 @@
 {
   "name": "pyoo.js",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "A library for Python-style OO in JavaScript",
   "main": "index.js",
   "scripts": {
