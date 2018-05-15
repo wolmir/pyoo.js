@@ -91,6 +91,16 @@ describe('Uma classe', function() {
     });
 
 
+
+    it('deve possibilitar a invocação de métodos estáticos', function () {
+        const Entity = Classe({
+            randomId: (seed) => seed * 100
+        });
+
+        expect(Entity.randomId(3)).toBe(300);
+    });
+
+
     // Essa restrição foi removida a fim de permitir métodos estáticos.
     // it('não deve permitir, em sua declaração, métodos com menos de um argumento', function() {
     //     expect(function() {

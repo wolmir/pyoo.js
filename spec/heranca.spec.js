@@ -146,6 +146,18 @@ describe('Uma subclasse', function() {
 
 
 
+    it('deve herdar os métodos estáticos da classe mãe', function () {
+        const A = Classe({
+            static1: () => 6
+        })
+
+        const B = Classe(A, {})
+
+        expect(B.static1()).toBe(6)
+    });
+
+
+
     it('deve poder sobrecarregar os métodos da classe mãe', function() {
         var CSuper = Classe({
             a: 2,
@@ -246,6 +258,25 @@ describe('Uma subclasse', function() {
             });
         }).toThrowError('pyoo.js: Superclasse inválida, obteve undefined');
     });
+
+
+    it('deve possibilitar a resolução de conflitos, se duas classes mães implementam o mesmo método', function () {
+        const A = Classe({
+            metodo1: (self) => 5,
+            metodo2: (self) => 3
+        })
+
+        const B = Classe({
+            metodo1: (self) => 4,
+            metodo2: (self) => 2
+        })
+
+        const C = Classe(A, B, {
+            metodo2: A.metodo2
+        })
+
+        expect(C().metodo2()).toBe(3)
+    })
 
 
 

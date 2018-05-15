@@ -11,12 +11,10 @@ no estilo *Python*.
 
 > npm install pyoo.js
 
-A **pyoo** é isomórfica.
-
 Para usar ela no browser sem **Webpack**:
 
 ```html
-<script src="node_modules/pyoo.js/pyoo.js"></script>
+<script src="node_modules/pyoo.js/dist/pyoo.js"></script>
 ```
 
 ### Classes

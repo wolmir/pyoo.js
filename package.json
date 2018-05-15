@@ -2,9 +2,10 @@
   "name": "pyoo.js",
   "version": "2.2.0",
   "description": "A library for Python-style OO in JavaScript",
-  "main": "src/pyoo.js",
+  "main": "index.js",
   "scripts": {
-    "test": "jasmine"
+    "test": "jasmine",
+    "build": "./node_modules/.bin/webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,11 @@
   },
   "homepage": "https://github.com/wolmir/pyoo.js#readme",
   "dependencies": {
-    "jasmine": "^2.5.0",
+    "jasmine": "^2.99.0",
     "lodash": "^4.15.0"
+  },
+  "devDependencies": {
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3"
   }
 }

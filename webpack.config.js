@@ -1,7 +1,9 @@
+const path = require('path');
+
 module.exports = {
-	entry: './src/pyoo.js',
-	output: {
-		path: __dirname,
-		filename: 'pyoo.js'
-	}
+  entry: './index.js',
+  output: {
+      path: path.resolve(__dirname, 'dist'),
+    filename: 'pyoo.js'
+  }
 };
